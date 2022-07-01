@@ -26,6 +26,14 @@ app.use(express.urlencoded({ extended: true })) // helps us handle urls being se
 app.use(express.json()) // help express pull apart the json and read the data being sent back and forth
 app.use(cors())
 
+app.get('/', async (request, response) => {
+    try {
+        response.render('index.ejs')
+    } catch (error) {
+        response.status(500).send({message: error.message})
+    }
+})
+
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server is running on port!`)
 } )
